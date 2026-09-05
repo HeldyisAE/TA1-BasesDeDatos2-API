@@ -1,0 +1,1 @@
+Aquí se colocará el script de las consultas SQL
