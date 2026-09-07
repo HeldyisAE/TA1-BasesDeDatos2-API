@@ -73,6 +73,93 @@ Finalmente, se comprobó la conexión al servidor SQL mediante sqlcmd:
 
 La conexión fue exitosa y se verificó el funcionamiento del servidor mediante consultas SQL.
 
+### 6. Instalación de AdventureWorks2025
+Para este proyecto se tomó la decisión de utilizar la base de datos AdventureWorks2025, que es compatible con SQL Server 2025. Se utilizó el archivo de respaldo proporcionado por Microsoft en su repositorio oficial de ejemplos de SQL Server.
+
+#### 6.1 Creación del directorio para trabajar
+Se creó un directorio para almacenar temporalmente el archivo de respaldo:
+
+**mkdir -p ~/Downloads/AdventureWorks**
+**cd ~/Downloads/AdventureWorks**
+
+#### 6.2 Descarga la base de datos
+Se descargó el respaldo AdventureWorks2025.bak desde las versiones oficiales de los ejemplos de SQL Server:
+
+**wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2025.bak**
+
+Se verificó que el archivo se descargara correctamente:
+
+**ls -lh ~/Downloads/AdventureWorks/AdventureWorks2025.bak**
+
+#### 6.3 Copia de respaldo del directorio de SQL Server
+Se creó el directorio utilizado por SQL Server para almacenar respaldos:
+
+**sudo mkdir -p /var/opt/mssql/backup**
+
+Posteriormente, se copió el archivo de respaldo:
+
+**sudo cp ~/Downloads/AdventureWorks/AdventureWorks2025.bak /var/opt/mssql/backup/**
+
+Se verificó que el archivo estuviera disponible:
+
+**sudo ls -lh /var/opt/mssql/backup/**
+
+#### 6.4 Identificación de archivos
+Antes de restaurar la base de datos, se consultó la información de los archivos contenidos en el respaldo mediante RESTORE FILELISTONLY:
+
+**RESTORE FILELISTONLY
+FROM DISK = '/var/opt/mssql/backup/AdventureWorks2025.bak';
+GO**
+
+El respaldo contenía los siguientes archivos lógicos:
+
+AdventureWorks → archivo de datos.
+AdventureWorks_log → archivo de registro.
+
+Estos nombres se utilizaron posteriormente en la instrucción RESTORE DATABASE.
+
+#### 6.5 Restauración de la base de datos
+La base de datos fue restaurada utilizando el respaldo descargado y asignando los archivos de datos y registro a los directorios correspondientes de SQL Server en Linux:
+
+**RESTORE DATABASE AdventureWorks2025
+FROM DISK = '/var/opt/mssql/backup/AdventureWorks2025.bak'
+WITH
+    MOVE 'AdventureWorks'
+        TO '/var/opt/mssql/data/AdventureWorks2025.mdf',
+    MOVE 'AdventureWorks_log'
+        TO '/var/opt/mssql/data/AdventureWorks2025_log.ldf';
+GO**
+
+La restauración finalizó correctamente.
+
+#### 6.6 Verificación de la base de datos
+Se verificó que AdventureWorks2025 estuviera registrada correctamente en el servidor:
+
+**SELECT name
+FROM sys.databases;
+GO**
+
+El resultado confirmó la existencia de AdventureWorks2025
+
+Posteriormente, se consultaron las tablas y vistas disponibles:
+
+**USE AdventureWorks2025;
+GO**
+
+**SELECT TABLE_SCHEMA, TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+ORDER BY TABLE_SCHEMA, TABLE_NAME;
+GO**
+
+La consulta retornó las tablas y vistas pertenecientes a los esquemas dbo, HumanResources, Person, Production, Purchasing y Sales.
+
+Finalmente, se realizó una consulta de prueba sobre la tabla Production.Product:
+
+**SELECT TOP 10 *
+FROM Production.Product;
+GO**
+
+La consulta retornó correctamente registros de productos.
 
 #### Autor: Heldyis Agüero Espinoza
 
