@@ -216,12 +216,12 @@ Se creó un archivo temporal de prueba en SQL en Visual Studio Code y se configu
 
 Los parámetros utilizados fueron:
 
-**Profile name: AdventureWorks2025
-Server: localhost,1433
-Authentication type: SQL Login
-User name: sa
-Database: AdventureWorks2025
-Trust server certificate: Activado**
+* Profile name: AdventureWorks2025
+* Server: localhost,1433
+* Authentication type: SQL Login
+* User name: sa
+* Database: AdventureWorks2025
+* Trust server certificate: Activado**
 
 La conexión fue establecida correctamente, lo que va a permitir utilizar Visual Studio Code para ejecutar consultas T-SQL y explorar la estructura de la base de datos AdventureWorks2025.
 
