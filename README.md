@@ -161,6 +161,90 @@ GO**
 
 La consulta retornó correctamente registros de productos.
 
+### 7. Instalación y configuración de VSCODE
+Para facilitar el desarrollo de la API y tener una fuente gráfica más cómoda para la exploración de la base de datos, se instaló Visual Studio Code como entorno de desarrollo.
+
+#### 7.1 Instalación de requisitos
+Se instalaron los paquetes necesarios para agregar el repositorio oficial de Visual Studio Code:
+
+**sudo apt install -y wget gpg apt-transport-https**
+
+#### 7.2 Se agrega la clave de Microsoft
+Se agregó la clave utilizada para verificar los paquetes provenientes del repositorio de Microsoft:
+
+**wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-vscode.gpg > /dev/null**
+
+#### 7.3 Se agrega el repositorio de VSCODE
+Se agregó el repositorio oficial de Visual Studio Code.
+
+**echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-vscode.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list**
+
+Posteriormente, se actualizaron los repositorios.
+
+**sudo apt update**
+
+#### 7.4 Instalación de Visual Studio Code
+Se instaló Visual Studio Code mediante apt:
+
+**sudo apt install -y code**
+
+Se verificó la instalación mediante:
+
+**code --version**
+
+La versión instalada fue:
+
+1.136.1
+
+#### 7.5 Instalación de la extensión de SQL
+Para trabajar con SQL Server directamente desde Visual Studio Code se instaló la extensión oficial SQL Server (mssql) de Microsoft:
+
+**code --install-extension ms-mssql.mssql**
+
+La extensión instalada corresponde a:
+
+SQL Server (mssql) v1.45.1
+
+Durante la instalación también se agregaron automáticamente las dependencias necesarias para el funcionamiento de la extensión, entre ellas SQL Database Projects y .NET Install Tool. Que son las que aparecen en la interfaz de VSCode, las demás instaladas están ocultas.
+
+La instalación se verificó mediante:
+
+**code --list-extensions | grep mssql**
+
+#### 7.6 Configuración de conexión con SQL Server
+Se creó un archivo temporal de prueba en SQL en Visual Studio Code y se configuró una conexión al servidor local de SQL Server.
+
+Los parámetros utilizados fueron:
+
+**Profile name: AdventureWorks2025
+Server: localhost,1433
+Authentication type: SQL Login
+User name: sa
+Database: AdventureWorks2025
+Trust server certificate: Activado**
+
+La conexión fue establecida correctamente, lo que va a permitir utilizar Visual Studio Code para ejecutar consultas T-SQL y explorar la estructura de la base de datos AdventureWorks2025.
+
+## Configuración de servicios
+
+### SQL Server
+El servicio de SQL Server se encuentra configurado para ejecutarse en Ubuntu y puede ser administrado mediante systemctl.
+
+### Base de Datos
+La base de datos AdventureWorks2025 se encuentra restaurada dentro de la instancia local de SQL Server 2025.
+
+### Visual Studio Code
+Visual Studio Code se encuentra configurado con la extensión SQL Server (mssql) y conectado a la instancia local de SQL Server mediante el puerto 1433.
+
+### Ejecución del proyecto
+****Pendiente****
+
+### Endpoints 
+****Pendiente****
+
+### Datos de prueba
+****Pendiente****
+
 #### Autor: Heldyis Agüero Espinoza
 
 #### Estado del proyecto: Fase investigativa
