@@ -51,7 +51,7 @@ EXEC sp_ProductGetAll;
 GO
 
 
-CREATE PROCEDURE sp_ProductGetByName
+CREATE PROCEDURE sp_ProductGetByID
     @ProductID INT
 AS
 BEGIN
@@ -75,5 +75,5 @@ BEGIN
 END;
 GO
 
-EXEC sp_ProductGetByName 749;
+EXEC sp_ProductGetByID 749;
 GO
