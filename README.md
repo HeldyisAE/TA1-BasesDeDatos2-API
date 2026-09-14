@@ -250,6 +250,11 @@ Se requería la implementación de un procedimiento CREATE.
 
 * sp_CreateProduct: Es un CREATE simple, inserta un nuevo registro en la tabla PRODUCTION.Product
 
+#### UPDATE
+Se requería la implementación de un procedimiento UPDATE
+
+* sp_UpdateProduct: Es un UPDATE simple, cambia los valores que se consideraron más importantes en la tabla PRODUCTION.Products.
+
 ### Ejecución del proyecto
 ****Pendiente****
 
