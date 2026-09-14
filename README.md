@@ -239,12 +239,16 @@ Visual Studio Code se encuentra configurado con la extensión SQL Server (mssql)
 ### Stored Procedures
 
 #### READ
-
 Se requería la implementación de dos procedimientos almacenados de tipo READ, para fines de este trabajo y con propósitos prácticos y de aprendizaje se terminaron implementando tres de ellos.
 
 * sp_SalesOrderGetAll: Es un READ simple, retorna los registros de Sales.SalesOrderHeader mediante una consulta sobre una única tabla
 * sp_ProductGetAll: Es un READ con join, retorna información junto con sus categorías y subcategorías mediante LEFT JOIN para mostrar todas las filas incluyendo las que tienen espacios NULL.
 * sp_ProductGetByID: Es una consulta adicional de tipo READ con JOIN y parámetros, el objetivo es retornar la información de un producto específico mediante su ProductID
+
+#### CREATE
+Se requería la implementación de un procedimiento CREATE.
+
+* sp_CreateProduct: Es un CREATE simple, inserta un nuevo registro en la tabla PRODUCTION.Product
 
 ### Ejecución del proyecto
 ****Pendiente****
