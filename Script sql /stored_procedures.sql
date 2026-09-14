@@ -102,3 +102,23 @@ GO
 
 EXEC sp_CreateProduct 'Mountain Bike Helmet', 'MB-M01B-01', 'Red', 100, 50, 10.00, 20.00, 'M', 5, '20260913';
 GO
+
+----------------------------------UPDATE SIMPLE----------------------------------
+CREATE OR ALTER PROCEDURE sp_UpdateProduct
+    @ProductID INT,
+    @Color NVARCHAR(15), 
+    @StandardCost MONEY, 
+    @ListPrice MONEY, 
+    @Size NVARCHAR(5), 
+    @DaysToManufacture INT
+AS 
+BEGIN
+UPDATE PRODUCTION.Product
+    SET Color = @Color, StandardCost = @StandardCost, ListPrice = @ListPrice, Size = @Size, DaysToManufacture = @DaysToManufacture
+    WHERE ProductID = @ProductID;
+END;
+GO
+
+EXEC sp_UpdateProduct 316, 'Grey', 14.50, 35.00, 'S', 5;
+GO
+
