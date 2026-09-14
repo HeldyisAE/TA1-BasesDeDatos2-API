@@ -1,7 +1,8 @@
 Use AdventureWorks2025;
 GO
 
-CREATE PROCEDURE sp_SalesOrderGetAll
+----------------------------------READ SIMPLE----------------------------------
+CREATE OR ALTER PROCEDURE sp_SalesOrderGetAll
 AS
 BEGIN
     SELECT  SS.SalesOrderID,
@@ -24,8 +25,8 @@ GO
 EXEC sp_SalesOrderGetAll;
 GO
 
-
-CREATE PROCEDURE sp_ProductGetAll
+----------------------------------READ CON JOIN----------------------------------
+CREATE OR ALTER PROCEDURE sp_ProductGetAll
 AS
 BEGIN
     SELECT  PP.Name AS ProductName, 
@@ -50,8 +51,8 @@ GO
 EXEC sp_ProductGetAll;
 GO
 
-
-CREATE PROCEDURE sp_ProductGetByID
+----------------------------------READ CON JOIN Y PARÁMETROS----------------------------------
+CREATE OR ALTER PROCEDURE sp_ProductGetByID
     @ProductID INT
 AS
 BEGIN
@@ -76,4 +77,28 @@ END;
 GO
 
 EXEC sp_ProductGetByID 749;
+GO
+
+----------------------------------CREATE SIMPLE----------------------------------
+CREATE OR ALTER PROCEDURE sp_CreateProduct
+    @Name NVARCHAR(50), 
+    @ProductNumber NVARCHAR(25), 
+    @Color NVARCHAR(15), 
+    @SafetyStockLevel SMALLINT, 
+    @ReorderPoint SMALLINT, 
+    @StandardCost MONEY, 
+    @ListPrice MONEY,  
+    @Size NVARCHAR(5), 
+    @DaysToManufacture INT, 
+    @SellStartDate DATE
+AS 
+BEGIN
+    INSERT INTO PRODUCTION.Product (Name, ProductNumber, Color, SafetyStockLevel, ReorderPoint, 
+                                    StandardCost, ListPrice, Size, DaysToManufacture, SellStartDate)
+        VALUES (@Name, @ProductNumber, @Color, @SafetyStockLevel, @ReorderPoint, @StandardCost, 
+                @ListPrice, @Size, @DaysToManufacture, @SellStartDate);
+END;
+GO
+
+EXEC sp_CreateProduct 'Mountain Bike Helmet', 'MB-M01B-01', 'Red', 100, 50, 10.00, 20.00, 'M', 5, '20260913';
 GO
