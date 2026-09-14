@@ -123,7 +123,7 @@ EXEC sp_UpdateProduct 316, 'Grey', 14.50, 35.00, 'S', 5;
 GO
 
 ----------------------------------DELETE SIMPLE----------------------------------
-CREATE PROCEDURE sp_DeleteProduct
+CREATE OR ALTER PROCEDURE sp_DeleteProduct
     @ProductID INT
 AS
 BEGIN
@@ -134,5 +134,3 @@ GO
 
 EXEC sp_DeleteProduct 1003;
 GO
-
-SELECT * FROM PRODUCTION.Product WHERE ProductID > 1000;
