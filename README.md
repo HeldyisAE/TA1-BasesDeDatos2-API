@@ -23,6 +23,8 @@ La API presenta endpoints para realizar operaciones utilizando exclusivamente pr
 * Motor de base de datos: **Microsoft SQL Server 2025**
 * Base de datos: **AdventureWorks2025**
 * Node.js
+* Express
+* mssql
 * npm
 * Git
 * VSCode (Para desarrollo)
@@ -235,6 +237,43 @@ La base de datos AdventureWorks2025 se encuentra restaurada dentro de la instanc
 
 ### Visual Studio Code
 Visual Studio Code se encuentra configurado con la extensión SQL Server (mssql) y conectado a la instancia local de SQL Server mediante el puerto 1433.
+
+### Node.js
+Nose.js se instaló mediante NVM. Se utilizó la versión LTS disponible al momento de la configuración.
+
+Para verificar la instalación:
+
+**node --version
+npm --version**
+
+El proyecto Node.js se inicializó dentro de la carpeta codigo mediante:
+
+**npm init -y**
+
+#### Instalación de dependencias
+Para el desarrollo de la API se instalaron las siguientes dependencias:
+
+* Express: framework utilizado para crear el servidor y definir los endpoints de la API.
+* mssql: paquete utilizado para establecer la comunicación entre Node.js y SQL Server.
+
+Instalación:
+
+**npm install express
+npm install mssql**
+
+#### Configuración del proyecto
+El archivo package.json se configuró con el siguiente script para iniciar la API:
+
+**"scripts": {
+    "start": "node index.js"
+}**
+
+El archivo principal de la API es:
+**codigo/ 
+├── index.js 
+├── package.json 
+├── package-lock.json 
+└── node_modules/**
 
 ### Stored Procedures
 
