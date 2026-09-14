@@ -255,6 +255,11 @@ Se requería la implementación de un procedimiento UPDATE
 
 * sp_UpdateProduct: Es un UPDATE simple, cambia los valores que se consideraron más importantes en la tabla PRODUCTION.Products.
 
+#### DELETE
+Se requería la implementación de un procedimiento DELETE
+
+* sp_DeleteProduct: Es un DELETE simple, elimina un registro de la tabla PRODUCTION.Product en base al ProductID buscado.
+
 ### Ejecución del proyecto
 ****Pendiente****
 
