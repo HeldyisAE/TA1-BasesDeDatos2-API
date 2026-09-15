@@ -308,8 +308,11 @@ Para evitar almacenar las credenciales de SQL Server directamente en el código 
 El archivo contiene las variables necesarias para la conexión:
 
 * DB_USER=sa
+  
 * DB_PASSWORD=********
+  
 * DB_SERVER=localhost
+  
 * DB_DATABASE=AdventureWorks2025
 
 El archivo **.env** se incluyó en **.gitignore** para evitar que las credenciales sean enviadas al repositorio.
@@ -336,17 +339,6 @@ Se configuró el paquete mssql para establecer la conexión entre Node.js y la b
 
 La configuración utiliza las variables almacenadas en .env:
 
-**const sqlConfig = {
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    server: process.env.DB_SERVER,
-    database: process.env.DB_DATABASE,
-    options: {
-        encrypt: false,
-        trustServerCertificate: true
-    }
-};**
-
 La conexión fue probada correctamente desde Node.js y posteriormente se ejecutó una consulta de prueba sobre Production.Product, comprobando que la API puede comunicarse con SQL Server y recibir resultados.
 
 ### Ejecución del proyecto
@@ -355,13 +347,12 @@ La conexión fue probada correctamente desde Node.js y posteriormente se ejecut�
 ### Endpoints 
 Se desarrollaron los endpoints correspondientes a las operaciones CRUD de productos y una consulta adicional para las órdenes de venta
 
-**Método**                **Endpoint**                **Descripción**
-GET                        /products                   Consulta todos los productos juntos con su categoría
-GET                        /products/:id               Consulta un producto específico mediante su ID
-GET                        /sales-orders               Consulta las órdenes de venta
-POST                       /products                   Crea un nuevo producto
-PUT                        /products/:id               Actualiza la información de un producto
-DELETE                     /products/:id               Elimina un producto
+* GET: /products   Consulta todos los productos juntos con su categoría
+* GET: /products/:id   Consulta un producto específico mediante su ID
+* GET: /sales-orders   Consulta las órdenes de venta
+* POST: /products   Crea un nuevo producto
+* PUT: /products/:id   Actualiza la información de un producto
+* DELETE: /products/:id   Elimina un producto
 
 Los endpoints utilizan Express para recibir las solicitudes HTTP y mssql para ejecutar los Stored Procedures correspondientes en SQL Server.
 
