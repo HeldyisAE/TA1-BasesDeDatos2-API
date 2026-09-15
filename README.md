@@ -259,7 +259,8 @@ Para el desarrollo de la API se instalaron las siguientes dependencias:
 Instalación:
 
 **npm install express
-npm install mssql**
+npm install mssql
+npm install dotenv**
 
 #### Configuración del proyecto
 El archivo package.json se configuró con el siguiente script para iniciar la API:
@@ -299,11 +300,70 @@ Se requería la implementación de un procedimiento DELETE
 
 * sp_DeleteProduct: Es un DELETE simple, elimina un registro de la tabla PRODUCTION.Product en base al ProductID buscado.
 
+### API
+
+#### Configuración de credenciales
+Para evitar almacenar las credenciales de SQL Server directamente en el código fuente, se creó un archivo .env dentro de la carpeta codigo/.
+
+El archivo contiene las variables necesarias para la conexión:
+
+* DB_USER=sa
+  
+* DB_PASSWORD=********
+  
+* DB_SERVER=localhost
+  
+* DB_DATABASE=AdventureWorks2025
+
+El archivo **.env** se incluyó en **.gitignore** para evitar que las credenciales sean enviadas al repositorio.
+
+También se agregó node_modules/ al **.gitignore**, debido a que las dependencias pueden ser instaladas nuevamente mediante **npm install**.
+
+#### Servidor Express
+Se configuró Express para ejecutar la API en el puerto 3000.
+
+**const express = require('express');**
+
+**const app = express();**
+**const PORT = 3000;**
+
+El servidor se inicia mediante:
+
+**npm start**
+
+Al ejecutarse correctamente, se muestra un mensaje indicando que el servidor está disponible en **localhost:3000**.
+
+En cuanto a la configuración con el servidor de SQL se realizó de la siguiente manera:
+
+Se configuró el paquete mssql para establecer la conexión entre Node.js y la base de datos AdventureWorks2025.
+
+La configuración utiliza las variables almacenadas en .env:
+
+La conexión fue probada correctamente desde Node.js y posteriormente se ejecutó una consulta de prueba sobre Production.Product, comprobando que la API puede comunicarse con SQL Server y recibir resultados.
+
 ### Ejecución del proyecto
 ****Pendiente****
 
 ### Endpoints 
-****Pendiente****
+Se desarrollaron los endpoints correspondientes a las operaciones CRUD de productos y una consulta adicional para las órdenes de venta
+
+* GET: /products   Consulta todos los productos juntos con su categoría
+* GET: /products/:id   Consulta un producto específico mediante su ID
+* GET: /sales-orders   Consulta las órdenes de venta
+* POST: /products   Crea un nuevo producto
+* PUT: /products/:id   Actualiza la información de un producto
+* DELETE: /products/:id   Elimina un producto
+
+Los endpoints utilizan Express para recibir las solicitudes HTTP y mssql para ejecutar los Stored Procedures correspondientes en SQL Server.
+
+Para las solicitudes que reciben información mediante el cuerpo de la petición se habilitó el procesamiento de JSON mediante:
+
+**app.use(express.json());**
+
+### Ejecución del proyecto
+Para iniciar la API desde la carpeta codigo/:
+
+**npm start**
 
 ### Datos de prueba
 ****Pendiente****
