@@ -271,9 +271,13 @@ El archivo package.json se configuró con el siguiente script para iniciar la AP
 
 El archivo principal de la API es:
 **codigo/ 
+
 ├── index.js 
+
 ├── package.json 
+
 ├── package-lock.json 
+
 └── node_modules/**
 
 ### Stored Procedures
