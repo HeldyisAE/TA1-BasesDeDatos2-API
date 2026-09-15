@@ -365,11 +365,58 @@ Para iniciar la API desde la carpeta codigo/:
 
 **npm start**
 
+**http://localhost:3000**
+
+Para realizar las pruebas de los endpoints se utilizó Postman, lo que permitió consumir la API mediante solicitudes HTTP sin necesidad de desarrollar una aplicación cliente adicional.
+Las pruebas confirmaron la comunicación correcta entre Postman, la API desarrollada con Node.js y Express, los Stored Procedures y la base de datos AdventureWorks2025.
+
 ### Datos de prueba
-****Pendiente****
+Para comprobar las operaciones de creación, actualización y eliminación se utilizó un producto creado específicamente para las pruebas.
+
+#### Creación
+Se utilizó la siguiente información para el POST /products:
+{ 
+  "Name": "Postman Test Product", 
+  "ProductNumber": "PT-M01-01", 
+  "Color": "Red", 
+  "SafetyStockLevel": 100, 
+  "ReorderPoint": 50, 
+  "StandardCost": 10.00, 
+  "ListPrice": 20.00, 
+  "Size": "M", 
+  "DaysToManufacture": 5, 
+  "SellStartDate": "20260914" 
+}
+
+El producto fue creado correctamente y SQL Server le asignó el identificador ProductID = 1004. En ejecuciones o pruebas posteriores no se asignará el mismo ID, puesto que este siempre va en aumento debido al borrado lógico.
+
+#### Actualización
+Posteriormente, se utilizó PUT /products/1004 para modificar los datos del producto:
+
+{ 
+  "Color": "Blue", 
+  "StandardCost": 15.00, 
+  "ListPrice": 30.00, 
+  "Size": "L", 
+  "DaysToManufacture": 7 
+}
+
+La actualización se realizó correctamente.
+
+#### Eliminación
+Finalmente, se utilizó:
+
+**DELETE /products/1004**
+
+para eliminar el producto utilizado durante las pruebas. La operación se ejecutó correctamente.
+
+#### Lectura
+Las consultas de lectura también fueron probadas mediante GET /products, GET /products/:id y GET /sales-orders, obteniendo correctamente los datos provenientes de la base de datos.
+
+## Datos administrativos
 
 #### Autor: Heldyis Agüero Espinoza
 
-#### Estado del proyecto: Fase de desarrollo SQL
+#### Estado del proyecto: Fase de desarrollo API
 
 #### Enlace del video:
