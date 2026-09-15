@@ -376,16 +376,27 @@ Para comprobar las operaciones de creación, actualización y eliminación se ut
 #### Creación
 Se utilizó la siguiente información para el POST /products:
 { 
+
   "Name": "Postman Test Product", 
+  
   "ProductNumber": "PT-M01-01", 
+  
   "Color": "Red", 
+  
   "SafetyStockLevel": 100, 
+  
   "ReorderPoint": 50, 
+  
   "StandardCost": 10.00, 
+  
   "ListPrice": 20.00, 
+  
   "Size": "M", 
+  
   "DaysToManufacture": 5, 
+  
   "SellStartDate": "20260914" 
+  
 }
 
 El producto fue creado correctamente y SQL Server le asignó el identificador ProductID = 1004. En ejecuciones o pruebas posteriores no se asignará el mismo ID, puesto que este siempre va en aumento debido al borrado lógico.
@@ -394,11 +405,17 @@ El producto fue creado correctamente y SQL Server le asignó el identificador Pr
 Posteriormente, se utilizó PUT /products/1004 para modificar los datos del producto:
 
 { 
+
   "Color": "Blue", 
+  
   "StandardCost": 15.00, 
+  
   "ListPrice": 30.00, 
+  
   "Size": "L", 
+  
   "DaysToManufacture": 7 
+  
 }
 
 La actualización se realizó correctamente.
