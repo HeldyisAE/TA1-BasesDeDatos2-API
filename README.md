@@ -375,6 +375,7 @@ Para comprobar las operaciones de creación, actualización y eliminación se ut
 
 #### Creación
 Se utilizó la siguiente información para el POST /products:
+
 { 
 
   "Name": "Postman Test Product", 
