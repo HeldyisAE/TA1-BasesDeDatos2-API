@@ -29,7 +29,7 @@ const sqlConfig = {
 
 sql.connect(sqlConfig)
     .then(() => {
-        console.log('COnectado a SQL Server');
+        console.log('Conectado a SQL Server');
 
     })
     .catch((error) => {
@@ -90,8 +90,8 @@ app.post('/products', async(req, res) => {
         const {Name, ProductNumber, Color, SafetyStockLevel, ReorderPoint, StandardCost, 
             ListPrice, Size, DaysToManufacture, SellStartDate } = req.body;
 
-        const result = await sql.query(`EXEC sp_CreateProduct ${Name}, ${ProductNumber}, ${Color}, ${SafetyStockLevel},
-                                        ${ReorderPoint}, ${StandardCost}, ${ListPrice}, ${Size}, ${DaysToManufacture},${SellStartDate}`);
+        const result = await sql.query`EXEC sp_CreateProduct ${Name}, ${ProductNumber}, ${Color}, ${SafetyStockLevel},
+                                        ${ReorderPoint}, ${StandardCost}, ${ListPrice}, ${Size}, ${DaysToManufacture},${SellStartDate}`;
 
         res.status(201).json({message: 'Producto creado correctamente'});
     } catch (error) {
@@ -109,8 +109,8 @@ app.put('/products/:id', async(req, res) => {
 
         const {Color, StandardCost, ListPrice, Size, DaysToManufacture} = req.body;
 
-        const result = await sql.query(`EXEC sp_UpdateProduct ${productID}, ${Color}, 
-                                        ${StandardCost}, ${ListPrice}, ${Size}, ${DaysToManufacture}`);
+        const result = await sql.query`EXEC sp_UpdateProduct ${productID}, ${Color}, 
+                                        ${StandardCost}, ${ListPrice}, ${Size}, ${DaysToManufacture}`;
         res.json({message: 'Producto actualizado correctamente'}); 
     } catch(error) {
         console.error(error);
@@ -125,7 +125,7 @@ app.delete('/products/:id', async(req, res) => {
     try {
         const productID = req.params.id;
 
-        const result = await sql.query(`EXEC sp_DeleteProduct ${productID}`);
+        const result = await sql.query`EXEC sp_DeleteProduct ${productID}`;
         res.json({message: 'Producto eliminado correctamente'});
     } catch(error) {
         console.error(error);

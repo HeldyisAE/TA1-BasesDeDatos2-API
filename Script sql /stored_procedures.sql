@@ -29,7 +29,8 @@ GO
 CREATE OR ALTER PROCEDURE sp_ProductGetAll
 AS
 BEGIN
-    SELECT  PP.Name AS ProductName, 
+    SELECT  PP.ProductID,
+            PP.Name AS ProductName, 
             PP.ProductNumber,
             PC.Name AS ProductCategoryName,
             PS.Name AS ProductSubcategoryName,
